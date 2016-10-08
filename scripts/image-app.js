@@ -43,7 +43,7 @@
 
     myWorker.postMessage(imageData);
 
-    myworker.onMessage = function(e) {
+    myWorker.onMessage = function(e) {
       imageData = e.data.imageData;
       toggleButtonsAbledness();
       return ctx.putImageData(imageData, 0, 0);
