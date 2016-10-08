@@ -39,9 +39,9 @@
 
     toggleButtonsAbledness();
 
-    var myWorker = new Worker('/worker.js');
+    var myWorker = new Worker('worker.js');
 
-    myworker.postMessage(imageData);
+    myWorker.postMessage(imageData);
 
     myworker.onMessage = function(e) {
       imageData = e.data.imageData;
