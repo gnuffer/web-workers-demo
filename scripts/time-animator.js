@@ -35,7 +35,7 @@
       "Thursday",
       "Friday",
       "Saturday"
-    ]
+    ];
 
     var months = [
       "January",
@@ -50,7 +50,7 @@
       "October",
       "November",
       "December"
-    ]
+    ];
 
     var now = new Date(Date.now());
 
@@ -112,5 +112,5 @@
     // save the data about this frame for future comparison
     lastTime = now;
     lastDiff = frameTimeDiff;
-  };
+  }
 })();
