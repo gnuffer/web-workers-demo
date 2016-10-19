@@ -44,14 +44,14 @@
 
     myWorker.postMessage({'imagedata': imageData, 'type': type});
 
-    myWorker.onMessage = function(e) {
+    myWorker.onmessage = function(e) {
       toggleButtonsAbledness();
       var image = e.data;
       if (image) return ctx.putImageData(e.data, 0, 0);
       console.log("No manipulated image returned.");
     };
 
-    myWorker.onError = function(e) {
+    myWorker.onerror = function(e) {
       function WorkerException(message) {
         this.name = "WorkerException";
         this.message = message;
