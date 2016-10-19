@@ -6,6 +6,8 @@
   var canvas = document.querySelector('#image');
   var ctx = canvas.getContext('2d');
 
+  var myWorker = new Worker('scripts/worker.js');
+
   function handleImage(e){
     var reader = new FileReader();
     reader.onload = function(event){
@@ -35,18 +37,26 @@
   }
 
   function manipulateImage(type) {
+    var a, b, g, i, imageData, j, length, pixel, r, ref;
     imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
     toggleButtonsAbledness();
 
-    var myWorker = new Worker('scripts/worker.js');
-
-    myWorker.postMessage(imageData);
+    myWorker.postMessage({'imagedata': imageData, 'type': type});
 
     myWorker.onMessage = function(e) {
-      imageData = e.data.imageData;
       toggleButtonsAbledness();
-      return ctx.putImageData(imageData, 0, 0);
+      var image = e.data;
+      if (image) return ctx.putImageData(e.data, 0, 0);
+      console.log("No manipulated image returned.");
+    };
+
+    myWorker.onError = function(e) {
+      function WorkerException(message) {
+        this.name = "WorkerException";
+        this.message = message;
+      }
+      throw new WorkerException('Worker error.');
     };
   }
 
