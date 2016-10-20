@@ -42,7 +42,7 @@
 
     toggleButtonsAbledness();
 
-    myWorker.postMessage({'imagedata': imageData, 'type': type});
+    myWorker.postMessage({'imageData': imageData, 'type': type});
 
     myWorker.onmessage = function(e) {
       toggleButtonsAbledness();
